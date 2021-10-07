@@ -82,7 +82,7 @@ const About = ({ match, location, history }) => {
               <Avatar
                 className={classes.large}
                 alt="Remy Sharp"
-                src={getImgUrl("uploads/profile_27322b67ed.jpg")}
+                src={getImgUrl("uploads/profile_52bcd811f2.jpg")}
               />
             </ButtonBase>
           </Grid>
@@ -117,7 +117,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/gmail3_7df0cdf1b8.png")}
+                          src={getImgUrl("uploads/gmail3_2e5b47e8dd.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="blyakher85@gmail.com" />
@@ -125,7 +125,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/telegram2_97605e82e6.png")}
+                          src={getImgUrl("uploads/telegram2_ff0965d02a.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="@cumar85" />
@@ -133,7 +133,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/skype2_5e5eec2d62.png")}
+                          src={getImgUrl("uploads/skype2_b109f4aa9e.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="cumar8585" />
