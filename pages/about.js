@@ -5,9 +5,6 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/styles"
 
-//import { makeStyles } from "@material-ui/core/styles"
-
-import { useDispatch, useSelector } from "react-redux"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemAvatar from "@material-ui/core/ListItemAvatar"
@@ -82,7 +79,7 @@ const About = ({ match, location, history }) => {
               <Avatar
                 className={classes.large}
                 alt="Remy Sharp"
-                src={getImgUrl("uploads/profile_52bcd811f2.jpg")}
+                src={getImgUrl("profile_acc7f1cf03.jpg")}
               />
             </ButtonBase>
           </Grid>
@@ -117,7 +114,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/gmail3_2e5b47e8dd.png")}
+                          src={getImgUrl("gmail3_29ef9d63b6.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="blyakher85@gmail.com" />
@@ -125,7 +122,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/telegram2_ff0965d02a.png")}
+                          src={getImgUrl("telegram2_407376bdb8.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="@cumar85" />
@@ -133,7 +130,7 @@ const About = ({ match, location, history }) => {
                     <ListItem>
                       <ListItemAvatar>
                         <Avatar
-                          src={getImgUrl("uploads/skype2_b109f4aa9e.png")}
+                          src={getImgUrl("skype2_bd6195992e.png")}
                         ></Avatar>
                       </ListItemAvatar>
                       <ListItemText primary="cumar8585" />

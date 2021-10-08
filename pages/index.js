@@ -181,7 +181,7 @@ const Index = ({ match, location, history, staticTags }) => {
 
   let pushImage = (img) => {
     if (img && img.url) {
-      images.push(getImgUrl(img.url))
+      images.push(img.url)
     }
   }
 
@@ -243,7 +243,7 @@ const Index = ({ match, location, history, staticTags }) => {
                 <img
                   className={classes.image}
                   onClick={() => setCurrentImage(i)}
-                  src={portfolio.image ? getImgUrl(portfolio.image.url) : ""}
+                  src={portfolio.image ? portfolio.image.url : ""}
                   alt={portfolio.name}
                   width={300}
                   height={200}
