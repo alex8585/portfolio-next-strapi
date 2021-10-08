@@ -8,7 +8,10 @@ const nextConfig = {
     PROJECT_ROOT: __dirname,
   },
   images: {
-    domains: ["local-laravel-shop.com"],
+    domains: [
+      "local-laravel-shop.com",
+      "portfolio85.s3.us-east-2.amazonaws.com",
+    ],
   },
 }
 

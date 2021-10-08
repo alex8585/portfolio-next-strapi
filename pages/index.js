@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 
 import Button from "@material-ui/core/Button"
 import Card from "@material-ui/core/Card"
@@ -21,9 +21,7 @@ import { red } from "@material-ui/core/colors"
 import Chip from "@material-ui/core/Chip"
 import Paper from "@material-ui/core/Paper"
 import { wrapper } from "../store"
-//import Tag from "../models/tagModel.js"
 
-//import Portfolio from "../models/portfolioModel.js"
 import { tagsSelectors, getTags } from "../features/tags/tagsSlice"
 import {
   portfoliosSelectors,
@@ -35,7 +33,6 @@ import FrontendLayout from "../components/FrontendLayout"
 import Head from "next/head"
 import Lightbox from "react-image-lightbox"
 import "react-image-lightbox/style.css"
-import { getImgUrl } from "../utils/utils"
 const useStyles = makeStyles((theme) => ({
   "@global": {
     ul: {
@@ -125,13 +122,6 @@ const Index = ({ match, location, history, staticTags }) => {
 
   const dispatch = useDispatch()
 
-  // const { data, page, total, loading } = useSelector(
-  //   (state) => state.portfolioList
-  // )
-  // const { data: tags, loading: tagsloading } = useSelector(
-  //   (state) => state.tagList
-  // )
-
   const { loading } = useSelector((state) => state.tags)
   const portfoliosLoading = useSelector((state) => state.portfolios.loading)
   const page = useSelector((state) => state.portfolios.page)
@@ -140,7 +130,7 @@ const Index = ({ match, location, history, staticTags }) => {
   const portfolios = useSelector(portfoliosSelectors.selectAll)
   const total = useSelector((state) => state.portfolios.total)
   let countPages = calcPages(perPage, total)
-
+  //console.log(portfolios)
   const images = []
   //  useEffect(async () => {
   //dispatch(listTags(1))
@@ -240,10 +230,10 @@ const Index = ({ match, location, history, staticTags }) => {
                   className={classes.cardHeader}
                 />
                 {pushImage(portfolio.image)}
-                <img
+                <Image
                   className={classes.image}
                   onClick={() => setCurrentImage(i)}
-                  src={portfolio.image ? portfolio.image.url : ""}
+                  src={portfolio.image ? portfolio.image.formats.small.url : ""}
                   alt={portfolio.name}
                   width={300}
                   height={200}
