@@ -21,7 +21,8 @@ import { red } from "@material-ui/core/colors"
 import Chip from "@material-ui/core/Chip"
 import Paper from "@material-ui/core/Paper"
 import { wrapper } from "../store"
-
+import CircularProgress from "@material-ui/core/CircularProgress"
+import Box from "@material-ui/core/Box"
 import { tagsSelectors, getTags } from "../features/tags/tagsSlice"
 import {
   portfoliosSelectors,
@@ -174,7 +175,6 @@ const Index = ({ match, location, history, staticTags }) => {
     }
   }
 
-  if (portfoliosLoading) return "loading..."
   return (
     <FrontendLayout>
       <Head>
@@ -200,99 +200,121 @@ const Index = ({ match, location, history, staticTags }) => {
         ></Typography>
       </Container>
       <Container maxWidth="md" component="main" className={classes.heroContent}>
-        <ul className={classes.paper}>
-          {[...tags]
-            //.sort((a, b) => (a.order_number > b.order_number ? 1 : -1))
-            .map((tag) => {
-              return (
-                <li
-                  key={tag.id}
-                  className={tagFilter.includes(tag.id) ? "active" : ""}
-                >
-                  <Chip
-                    label={tag.name}
-                    onClick={() => handletagFilter(tag.id)}
-                    className={classes.chip}
-                  />
-                </li>
-              )
-            })}
-        </ul>
-        <Grid container spacing={5} alignItems="flex-end">
-          {portfolios.map((portfolio, i) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid item key={portfolio.name} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardHeader
-                  title={portfolio.name}
-                  subheader=""
-                  className={classes.cardHeader}
-                />
-                {pushImage(portfolio.image)}
-                <Image
-                  className={classes.image}
-                  onClick={() => setCurrentImage(i)}
-                  src={portfolio.image ? portfolio.image.formats.small.url : ""}
-                  alt={portfolio.name}
-                  width={300}
-                  height={200}
-                />
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {portfolio.description ? portfolio.description : ""}
-                  </Typography>
-                  <Paper component="ul" className={classes.paper}>
-                    {[...portfolio.tags]
-                      // .sort((a, b) =>
-                      //  a.order_number > b.order_number ? 1 : -1
-                      //)
-                      .map((tag) => {
-                        return (
-                          <li key={tag.id}>
-                            <Chip label={tag.name} className={classes.chip} />
-                          </li>
-                        )
-                      })}
-                  </Paper>
-                  {portfolio.url.indexOf("github") !== -1 && (
-                    <Button
-                      target="_blank"
-                      className={classes.button}
-                      variant="contained"
-                      color="secondary"
-                      href={portfolio.url}
+        {portfoliosLoading && (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <CircularProgress size="80px" />
+          </Box>
+        )}
+        {!portfoliosLoading && (
+          <div>
+            <ul className={classes.paper}>
+              {[...tags]
+                //.sort((a, b) => (a.order_number > b.order_number ? 1 : -1))
+                .map((tag) => {
+                  return (
+                    <li
+                      key={tag.id}
+                      className={tagFilter.includes(tag.id) ? "active" : ""}
                     >
-                      Github
-                    </Button>
-                  )}
-                  {portfolio.url.indexOf("github") === -1 && (
-                    <Button
-                      target="_blank"
-                      className={classes.button}
-                      variant="contained"
-                      color="primary"
-                      href={portfolio.url}
-                    >
-                      View
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
+                      <Chip
+                        label={tag.name}
+                        onClick={() => handletagFilter(tag.id)}
+                        className={classes.chip}
+                      />
+                    </li>
+                  )
+                })}
+            </ul>
+
+            <Grid container spacing={5} alignItems="flex-end">
+              {portfolios.map((portfolio, i) => (
+                // Enterprise card is full width at sm breakpoint
+                <Grid item key={portfolio.name} xs={12} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardHeader
+                      title={portfolio.name}
+                      subheader=""
+                      className={classes.cardHeader}
+                    />
+                    {pushImage(portfolio.image)}
+                    <Image
+                      className={classes.image}
+                      onClick={() => setCurrentImage(i)}
+                      src={
+                        portfolio.image ? portfolio.image.formats.small.url : ""
+                      }
+                      alt={portfolio.name}
+                      width={300}
+                      height={200}
+                    />
+                    <CardContent>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        {portfolio.description ? portfolio.description : ""}
+                      </Typography>
+                      <Paper component="ul" className={classes.paper}>
+                        {[...portfolio.tags]
+                          // .sort((a, b) =>
+                          //  a.order_number > b.order_number ? 1 : -1
+                          //)
+                          .map((tag) => {
+                            return (
+                              <li key={tag.id}>
+                                <Chip
+                                  label={tag.name}
+                                  className={classes.chip}
+                                />
+                              </li>
+                            )
+                          })}
+                      </Paper>
+                      {portfolio.url.indexOf("github") !== -1 && (
+                        <Button
+                          target="_blank"
+                          className={classes.button}
+                          variant="contained"
+                          color="secondary"
+                          href={portfolio.url}
+                        >
+                          Github
+                        </Button>
+                      )}
+                      {portfolio.url.indexOf("github") === -1 && (
+                        <Button
+                          target="_blank"
+                          className={classes.button}
+                          variant="contained"
+                          color="primary"
+                          href={portfolio.url}
+                        >
+                          View
+                        </Button>
+                      )}
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        <div className={classes.paginatorContainer}>
-          <Pagination
-            page={parseInt(page)}
-            count={parseInt(countPages)}
-            onChange={handleChangePage}
-            className={classes.pagination}
-          />
-        </div>
+
+            <div className={classes.paginatorContainer}>
+              <Pagination
+                page={parseInt(page)}
+                count={parseInt(countPages)}
+                onChange={handleChangePage}
+                className={classes.pagination}
+              />
+            </div>
+          </div>
+        )}
       </Container>
       {isOpen && (
         <Lightbox
@@ -317,7 +339,7 @@ export const getStaticProps = wrapper.getStaticProps(
     async ({ preview }) => {
       await store.dispatch(getTags())
       await store.dispatch(getPortfolios({ page: 1, perPage }))
-      return { revalidate: 1 }
+      return { revalidate: 60 }
     }
 )
 
