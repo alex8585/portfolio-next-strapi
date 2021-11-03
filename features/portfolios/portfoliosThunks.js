@@ -15,9 +15,10 @@ export const getPortfoliosThunk = createAsyncThunk(
   async ({ page = 1, perPage = 5, tags = [] }, thunkAPI) => {
     let tf = arrayToTagsFilter(tags)
     let start = (page - 1) * perPage
+
     const response = await axios.get(
       API_URL +
-        `/get-portfolios/?_sort=order_number:ASC&_start=${start}&_limit=${perPage}&${tf}`
+        `/get-portfolios?_sort=order_number:ASC&_start=${start}&_limit=${perPage}&${tf}`
     )
 
     let result = {

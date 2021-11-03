@@ -130,7 +130,6 @@ const Index = ({ match, location, history, staticTags }) => {
   const portfolios = useSelector(portfoliosSelectors.selectAll)
   const total = useSelector((state) => state.portfolios.total)
   let countPages = calcPages(perPage, total)
-  //console.log(portfolios)
   const images = []
   //  useEffect(async () => {
   //dispatch(listTags(1))
