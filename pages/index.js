@@ -170,7 +170,14 @@ const Index = ({ match, location, history, staticTags }) => {
   }
 
   let pushImage = (img) => {
-    images.push(img.large.url)
+    let imgUrl = img.small.url 
+    if(img.medium) {
+      imgUrl= img.medium.url 
+    }
+    if(img.large) {
+      imgUrl= img.large.url 
+    }
+    images.push(imgUrl)
   }
 
   return (
