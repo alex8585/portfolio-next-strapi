@@ -170,9 +170,7 @@ const Index = ({ match, location, history, staticTags }) => {
   }
 
   let pushImage = (img) => {
-    if (img && img.url) {
-      images.push(img.url)
-    }
+    images.push(img.large.url)
   }
 
   return (
@@ -242,7 +240,7 @@ const Index = ({ match, location, history, staticTags }) => {
                       subheader=""
                       className={classes.cardHeader}
                     />
-                    {pushImage(portfolio.image)}
+                    {pushImage(portfolio.image?.formats)}
                     <Image
                       className={classes.image}
                       onClick={() => setCurrentImage(i)}
